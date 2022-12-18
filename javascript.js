@@ -7,4 +7,5 @@ for (let i=0; i<height**2; i++){
     item.classList.add("item")
     container.append(item)
     console.log(i)
+    item.addEventListener('mouseover', () => item.style.backgroundColor='grey')
 };
