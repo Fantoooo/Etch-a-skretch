@@ -7,6 +7,18 @@ function removecontent(id){
             child = container.lastElementChild;
         }
 }
+/*différents modes de couleur*/
+/*1. rainbow mode */
+const rainbowcolor = document.querySelector('#rainbow')
+rainbowcolor.addEventListener('click', () => {
+    actualcolor = 'random'
+})
+/*2. eraser mode */
+const erasermode = document.querySelector('#eraser')
+erasermode.addEventListener('click', () => {
+    actualcolor = 'eraser'
+})
+
 /*changer la couleur */
 const changecolor = document.querySelector('#changecolor');
 const showcolor = document.querySelector('#showcolor')
@@ -19,9 +31,19 @@ changecolor.addEventListener('click', () => {
 /*récupere la couleur actuelle */
 function getactualcolor(){
     let randomlist = ["red","blue","green","darkblue","darkgreen","darkred","aqua"]
-    if(actualcolor == 'random'){return randomlist[Math.floor(Math.random()*randomlist.length)]}
-    if(actualcolor == 'eraser'){return 'white'}
-    return actualcolor
+    if(actualcolor == 'random'){
+        rainbowcolor.setAttribute('style', 'background-color:black; color:white;')
+        erasermode.setAttribute('style', 'background-color:white; color:black;')
+        return randomlist[Math.floor(Math.random()*randomlist.length)]
+    }else if(actualcolor == 'eraser'){
+        erasermode.setAttribute('style', 'background-color:black; color:white;')
+        rainbowcolor.setAttribute('style', 'background-color:white; color:black;')
+        return 'white'
+    }else{
+        rainbowcolor.setAttribute('style', 'background-color:white; color:black;')
+        erasermode.setAttribute('style', 'background-color:white; color:black;')
+        return actualcolor
+    }
 }
 /*créer le tableau */
 function tableau(height){
@@ -39,17 +61,7 @@ function tableau(height){
         item.addEventListener('mouseover', () => item.style.backgroundColor=getactualcolor());
     };
 }
-/*différents modes de couleur*/
-/*1. rainbow mode */
-const rainbowcolor = document.querySelector('#rainbow')
-rainbowcolor.addEventListener('click', () => {
-    actualcolor = 'random'
-})
-/*2. eraser mode */
-const erasermode = document.querySelector('#eraser')
-erasermode.addEventListener('click', () => {
-    actualcolor = 'eraser'
-})
+
 
 /*initialise le tableau*/
 tableau(10)
